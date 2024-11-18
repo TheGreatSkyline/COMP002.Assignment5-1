@@ -21,35 +21,34 @@ function reliableMultiply(a, b) {
 }
 
 function reliableMultiply(a, b) { 
-  // Define the function reliableMultiply which takes two parameters a and b
+  // Define the reliableMultiply function with parameters a and b
   while (true) { 
-    // Start an infinite loop
+    // Create an infinite loop
     try { 
-      // Begin a try block to attempt the multiplication
+      // Attempt to execute the following block of code
       return primitiveMultiply(a, b); 
-      // Try to return the result of primitiveMultiply(a, b)
+      // Return the result of primitiveMultiply(a, b) if successful
     } catch (e) { 
-      // Catch any errors that occur in the try block
+      // Catch any exceptions thrown in the try block
       if (!(e instanceof MultiplicatorUnitFailure)) { 
-        // Check if the error is NOT an instance of MultiplicatorUnitFailure
+        // Check if the caught exception is NOT of type MultiplicatorUnitFailure
         throw e;
-         // If it’s not the exception we're handling, re-throw the error
+         // Re-throw the exception if it's not the expected type
       }
-      // If the exception is a MultiplicatorUnitFailure, the loop continues and tries again
+      // If the exception is of type MultiplicatorUnitFailure, continue the loop to retry
     }
   }
 }
+
 function handleException(e) { 
-  // Define the function handleException which takes one parameter e (the error)
-  // Check if the error is not an instance of MultiplicatorUnitFailure
+  // Define the handleException function with parameter e (the error)
+  // Verify if the error is not an instance of MultiplicatorUnitFailure
   if (!(e instanceof MultiplicatorUnitFailure)) {
       throw e; 
-      // Re-throw the error if it's not the exception we're handling
+      // Re-throw the error if it is not a MultiplicatorUnitFailure
   }
-  // Otherwise, just continue (do nothing here so the calling function can retry)
+  // If the error is a MultiplicatorUnitFailure, proceed without interruption (continue the calling function's operation)
 }
-
-
 
 // Example usage
 console.log(reliableMultiply(8, 8)); // Outputs: 64 (may take several attempts)
